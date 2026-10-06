@@ -2,7 +2,7 @@
 
 The extension has not yet been submitted to the Raycast Store.
 
-The manifest uses the verified Raycast profile handle `spannmicah`. The internal extension name is `tally`; its public title is **Tally**.
+The manifest uses the verified Raycast profile handle `spannmicah`. The internal extension name is `tallies`; its public title is **Tallies**.
 
 ## Local validation
 

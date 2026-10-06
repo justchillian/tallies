@@ -2,11 +2,11 @@ import { Cache, LocalStorage, showToast, Toast } from "@raycast/api";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { initialStore, type Store } from "./types";
 
-const KEY = "tally.store.v1";
-const SELECTED_TEMPLATE_KEY = "tally.selectedTemplateId";
+const KEY = "tallies.store.v1";
+const SELECTED_TEMPLATE_KEY = "tallies.selectedTemplateId";
 // Explicitly namespace this cache so Template and Check In share one value
 // even when Raycast runs their entry points in separate processes.
-const selectionCache = new Cache({ namespace: "tally-shared" });
+const selectionCache = new Cache({ namespace: "tallies-shared" });
 export function rememberSelectedTemplate(id: string) {
   selectionCache.set(SELECTED_TEMPLATE_KEY, id);
 }

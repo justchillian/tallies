@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "tally",
-  "title": "Tally",
+  "name": "tallies",
+  "title": "Tallies",
   "description": "Track attendance and copy Excel-compatible tables and template notes.",
   "icon": "tally-icon.png",
   "author": "spannmicah",
