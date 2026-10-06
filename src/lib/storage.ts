@@ -37,7 +37,8 @@ export function useStore() {
         ) {
           throw new Error("Saved data is invalid. It has not been overwritten.");
         }
-        const rememberedTemplateId = selectionCache.get(SELECTED_TEMPLATE_KEY) ?? (await LocalStorage.getItem<string>(SELECTED_TEMPLATE_KEY));
+        const rememberedTemplateId =
+          selectionCache.get(SELECTED_TEMPLATE_KEY) ?? (await LocalStorage.getItem<string>(SELECTED_TEMPLATE_KEY));
         if (rememberedTemplateId && stored.templates.some((template) => template.id === rememberedTemplateId)) {
           stored.selectedTemplateId = rememberedTemplateId;
         }
