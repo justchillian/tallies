@@ -205,8 +205,9 @@ export default function AttendanceCommand() {
             value={data.selectedTemplateId}
             onChange={async (id) => {
               if (id !== data.selectedTemplateId) {
-                rememberSelectedTemplate(id);
-                await save((store) => ({ ...store, selectedTemplateId: id }), "Template Selected");
+                if (await save((store) => ({ ...store, selectedTemplateId: id }), "Template Selected")) {
+                  rememberSelectedTemplate(id);
+                }
               }
             }}
           >
