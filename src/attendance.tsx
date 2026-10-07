@@ -105,7 +105,14 @@ function AttendanceActions({ data, save, entry }: { data: Store; save: SaveStore
           <Action
             title="Mark No Show"
             icon={Icon.Person}
+<<<<<<< HEAD
             shortcut={{ modifiers: ["ctrl", "shift"], key: "n" }}
+=======
+            shortcut={{
+              macOS: { modifiers: ["cmd", "shift"], key: "n" },
+              Windows: { modifiers: ["ctrl", "shift"], key: "n" },
+            }}
+>>>>>>> contributions/merge-1791363250024
             onAction={async () => {
               await save(
                 (store) => ({

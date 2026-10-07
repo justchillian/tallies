@@ -19,7 +19,7 @@
     },
     {
       "name": "attendance",
-      "title": "Check in",
+      "title": "Check In",
       "description": "Track attendance and copy Excel-compatible tables",
       "mode": "view",
       "icon": "tallies-icon.png"
