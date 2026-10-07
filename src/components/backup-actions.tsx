@@ -22,7 +22,7 @@ function ExportForm({ data }: { data: Store }) {
   async function submit({ folders }: { folders: string[] }) {
     try {
       if (folders.length !== 1) throw new Error("Choose a destination folder.");
-      const path = join(folders[0], `tally-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json`);
+      const path = join(folders[0], `tallies-backup-${new Date().toISOString().replace(/[:.]/g, "-")}.json`);
       await writeFile(path, exportBackup(data), { flag: "wx", mode: 0o600 });
       await showToast({ style: Toast.Style.Success, title: "Backup Saved", message: path });
       try {
@@ -65,11 +65,11 @@ function ImportForm({ save }: { save: SaveStore }) {
   const { pop } = useNavigation();
   async function submit({ files }: { files: string[] }) {
     try {
-      if (files.length !== 1) throw new Error("Choose one Tally JSON backup.");
+      if (files.length !== 1) throw new Error("Choose one Tallies JSON backup.");
       const incoming = importBackup(await readFile(files[0], "utf8"));
       if (
         !(await confirmAlert({
-          title: "Replace All Tally Data?",
+          title: "Replace All Tallies Data?",
           message: `Import ${incoming.templates.length} templates and ${incoming.entries.length} entries? This replaces all current templates and entries. Export a backup first if you want to keep them.`,
           primaryAction: { title: "Replace and Import", style: Alert.ActionStyle.Destructive },
         }))

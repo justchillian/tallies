@@ -1,9 +1,9 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "tally",
-  "title": "Tally",
+  "name": "tallies",
+  "title": "Tallies",
   "description": "Track attendance and copy Excel-compatible tables and template notes.",
-  "icon": "tally-icon.png",
+  "icon": "tallies-icon.png",
   "author": "spannmicah",
   "license": "MIT",
   "categories": [
@@ -15,14 +15,14 @@
       "title": "Template",
       "description": "Create and select attendance markdown templates",
       "mode": "view",
-      "icon": "tally-icon.png"
+      "icon": "tallies-icon.png"
     },
     {
       "name": "attendance",
       "title": "Check In",
       "description": "Track attendance and copy Excel-compatible tables",
       "mode": "view",
-      "icon": "tally-icon.png"
+      "icon": "tallies-icon.png"
     }
   ],
   "scripts": {

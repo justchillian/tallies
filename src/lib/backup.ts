@@ -17,13 +17,13 @@ function unique(ids: string[]) {
     throw new Error("Backup contains empty or duplicate IDs.");
 }
 export function exportBackup(store: Store): string {
-  return JSON.stringify({ format: "tally-backup", version: 1, data: store }, null, 2);
+  return JSON.stringify({ format: "tallies-backup", version: 1, data: store }, null, 2);
 }
 /** Validate the entire backup before the caller replaces any local data. */
 export function importBackup(raw: string): Store {
   const backup = object(JSON.parse(raw));
-  if (backup.format !== "tally-backup" || backup.version !== 1)
-    throw new Error("Choose a supported Tally backup (version 1).");
+  if ((backup.format !== "tallies-backup" && backup.format !== "tally-backup") || backup.version !== 1)
+    throw new Error("Choose a supported Tallies backup (version 1).");
   const data = object(backup.data);
   if (data.version !== 1 || !Array.isArray(data.templates) || !data.templates.length || !Array.isArray(data.entries))
     throw new Error("Backup must contain templates and entries.");

@@ -2,11 +2,11 @@ import { Cache, LocalStorage, showToast, Toast } from "@raycast/api";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { initialStore, type Store } from "./types";
 
-const KEY = "tally.store.v1";
-const SELECTED_TEMPLATE_KEY = "tally.selectedTemplateId";
+const KEY = "tallies.store.v1";
+const SELECTED_TEMPLATE_KEY = "tallies.selectedTemplateId";
 // Explicitly namespace this cache so Template and Check In share one value
 // even when Raycast runs their entry points in separate processes.
-const selectionCache = new Cache({ namespace: "tally-shared" });
+const selectionCache = new Cache({ namespace: "tallies-shared" });
 export function rememberSelectedTemplate(id: string) {
   selectionCache.set(SELECTED_TEMPLATE_KEY, id);
 }
@@ -27,7 +27,7 @@ export function useStore() {
     let active = true;
     (async () => {
       try {
-        const raw = await LocalStorage.getItem<string>(KEY);
+        const raw = (await LocalStorage.getItem<string>(KEY)) ?? (await LocalStorage.getItem<string>("tally.store.v1"));
         const stored: Store = raw ? JSON.parse(raw) : initialStore();
         if (
           stored.version !== 1 ||
@@ -38,7 +38,9 @@ export function useStore() {
           throw new Error("Saved data is invalid. It has not been overwritten.");
         }
         const rememberedTemplateId =
-          selectionCache.get(SELECTED_TEMPLATE_KEY) ?? (await LocalStorage.getItem<string>(SELECTED_TEMPLATE_KEY));
+          selectionCache.get(SELECTED_TEMPLATE_KEY) ??
+          (await LocalStorage.getItem<string>(SELECTED_TEMPLATE_KEY)) ??
+          (await LocalStorage.getItem<string>("tally.selectedTemplateId"));
         if (rememberedTemplateId && stored.templates.some((template) => template.id === rememberedTemplateId)) {
           stored.selectedTemplateId = rememberedTemplateId;
         }

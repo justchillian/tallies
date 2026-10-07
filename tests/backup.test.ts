@@ -13,6 +13,15 @@ test("backup round trip preserves templates, entries, notes, and times", () => {
   const store = fixture();
   assert.deepEqual(JSON.parse(exportBackup(importBackup(exportBackup(store)))), JSON.parse(exportBackup(store)));
 });
+test("exports Tallies backups and imports backups made before the rename", () => {
+  const store = fixture();
+  const backup = JSON.parse(exportBackup(store));
+  assert.equal(backup.format, "tallies-backup");
+  backup.format = "tally-backup";
+  assert.deepEqual(JSON.parse(exportBackup(importBackup(JSON.stringify(backup)))), JSON.parse(exportBackup(store)));
+  backup.format = "unrelated-backup";
+  assert.throws(() => importBackup(JSON.stringify(backup)));
+});
 test("rejects invalid backups, duplicate identities, broken references, and times", () => {
   for (const change of [
     (b: any) => {
